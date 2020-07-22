@@ -12,6 +12,6 @@ spec:
     targetPort: 8082
   selector:
     app: category
-  type: LoadBalancer
+  type: NodePort
 status:
   loadBalancer: {}
