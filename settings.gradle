@@ -1,0 +1,6 @@
+rootProject.name = 'pages-distributed'
+include 'components:business'
+include 'components:category'
+include 'application:business-server'
+include 'application:category-server'
+
