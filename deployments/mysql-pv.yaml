@@ -1,0 +1,15 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: mysql-persistent-volume
+  namespace: jagadishkl
+  labels:
+    type: local
+spec:
+  storageClassName: mysql-jagadishkl
+  capacity:
+    storage: 1Gi
+  accessModes:
+  - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data"

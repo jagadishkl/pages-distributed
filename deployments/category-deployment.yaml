@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: category
+  name: category
+  namespace: jagadishkl
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: category
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: category
+    spec:
+      volumes:
+      - name: log-volume
+        persistentVolumeClaim:
+          claimName: log-persistent-claim
+      containers:
+      - image: jagadishkl/category:distributed
+        imagePullPolicy: Always
+        name: category
+        ports:
+        - containerPort: 8082
+        volumeMounts:
+        - name: log-volume
+          mountPath: "/var/tmp/"
+        resources: {}
+status: {}

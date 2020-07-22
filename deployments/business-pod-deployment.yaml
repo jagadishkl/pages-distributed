@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: business
+  name: business
+  namespace: jagadishkl
+spec:
+  volumes:
+  - name: log-volume
+    persistentVolumeClaim:
+      claimName: log-persistent-claim
+  containers:
+  - image: jagadishkl/business:distributed
+    imagePullPolicy: Always
+    env:
+    - name : CATEGORY_URL
+      value: "http://category:8082/category"
+    name: business
+    volumeMounts:
+      - name: log-volume
+        mountPath: "/var/tmp/"
+    ports:
+    - containerPort: 8081
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
